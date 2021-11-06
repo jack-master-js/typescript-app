@@ -1,7 +1,8 @@
-import express from 'express'
-import service from './main.service'
-const router = express.Router()
+import express from "express";
+import service from "./main.service";
+const router = express.Router();
 
-router.get('/', service.root)
+// /api
+router.get("/upload", service.upload);
 
-export default router
+export default router;
