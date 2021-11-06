@@ -1,5 +1,5 @@
 class MainService {
-    home(req: any, res: any, next: any) {
+    root(req: any, res: any, next: any) {
         try {
             // throw {message: 'error'}
             res.success()

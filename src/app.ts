@@ -1,16 +1,27 @@
+import "reflect-metadata";
 import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
-import mainRouter from './main/main.router'
 import dotenv from "dotenv";
 import fs from "fs";
 import logger from "./utils/logger";
-import responser from './common/middleware/responser'
+import responser from './common/middleware/responser';
+import { createConnection } from "typeorm";
+
+// routes
+import mainRouter from './main/main.router'
+import userRouter from './user/user.router'
 
 if (fs.existsSync(".env")) {
     logger.info("Using .env file to supply config environment variables");
     dotenv.config({ path: ".env" });
 }
+
+createConnection()
+    .then((connection) => {
+      logger.info("数据库连接成功!");
+    })
+    .catch((error) => logger.error(`数据库连接失败！ error: ${error.message}`));
 
 const app = express();
 
@@ -23,6 +34,7 @@ app.use(
 );
 app.use(responser)
 app.use('/', mainRouter)
+app.use('/user', userRouter)
 
 // 404
 app.use((req:any, res:any, next:any) => {

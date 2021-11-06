@@ -1,5 +1,5 @@
 import express from 'express'
-import service from './main.service'
+import service from './user.service'
 const router = express.Router()
 
 router.get('/', service.root)

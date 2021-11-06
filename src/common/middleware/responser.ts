@@ -6,7 +6,7 @@ export default (req: any, res: any, next: any) => {
             success: true,
         })
         logger.info(
-            `[http server] request ${req.url} ${JSON.stringify(
+            `[http server] request ${req.originalUrl} ${JSON.stringify(
                 req.body
             )} success`
         )
@@ -20,7 +20,7 @@ export default (req: any, res: any, next: any) => {
         })
 
         logger.info(
-            `[http server] request ${req.url} ${JSON.stringify(
+            `[http server] request ${req.originalUrl} ${JSON.stringify(
                 req.body
             )} response data: ${JSON.stringify(content)}`
         )
@@ -34,7 +34,7 @@ export default (req: any, res: any, next: any) => {
         })
 
         logger.error(
-            `[http server] request ${req.url} ${JSON.stringify(
+            `[http server] request ${req.originalUrl} ${JSON.stringify(
                 req.body
             )} error: ${message}`
         )
