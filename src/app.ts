@@ -30,11 +30,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
-    express.static(path.join(__dirname, "public"), { maxAge: 31557600000 })
+    express.static(path.join(__dirname, "../", "public"), { maxAge: 31557600000 })
 );
 app.use(responser)
-app.use('/', mainRouter)
-app.use('/user', userRouter)
+app.use('/api', mainRouter)
+app.use('/api/users', userRouter)
 
 // 404
 app.use((req:any, res:any, next:any) => {
