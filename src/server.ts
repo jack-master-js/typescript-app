@@ -17,7 +17,7 @@ const server = app.listen(app.get("port"), () => {
  * Start ws server.
  */
 ws.start(server).then(() => {
-  logger.info(`ws server is up.`);
+  logger.info(`ws server is listening.`);
 });
 
 export default server;
