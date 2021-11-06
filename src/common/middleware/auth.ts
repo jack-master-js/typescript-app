@@ -7,7 +7,7 @@ module.exports = async (req: any, res: any, next: any) => {
   try {
     const decode: any = jwt.verify(token, process.env.TOKEN_SECRET);
     const { account } = decode;
-    const user = await User.findOne({ account });
+    const user = await User.findOne();
 
     if (user) {
       next();

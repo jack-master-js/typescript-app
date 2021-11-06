@@ -13,6 +13,7 @@ import fs from "fs";
 import logger from "./common/utils/logger";
 import responser from "./common/middleware/responser";
 import { createConnection } from "typeorm";
+import MongoStore from "connect-mongo";
 
 // routes
 import mainRouter from "./main/main.router";
@@ -43,12 +44,9 @@ app.use(
     resave: true,
     saveUninitialized: true,
     secret: process.env.SESSION_SECRET,
-    // store: new MongoStore({
-    //     mongoUrl,
-    //     mongoOptions: {
-    //         autoReconnect: true
-    //     }
-    // })
+    store: new MongoStore({
+      mongoUrl: process.env.MONGODB_URI,
+    }),
   })
 ); //req.session
 app.use(cookieParser()); //req.cookies || req.signedCookies
