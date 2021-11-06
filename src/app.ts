@@ -18,7 +18,7 @@ if (fs.existsSync(".env")) {
 }
 
 createConnection()
-    .then((connection) => {
+    .then(() => {
       logger.info("数据库连接成功!");
     })
     .catch((error) => logger.error(`数据库连接失败！ error: ${error.message}`));
@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
-    express.static(path.join(__dirname, "../", "public"), { maxAge: 31557600000 })
+    express.static(path.join(__dirname, "../", "public"))
 );
 app.use(responser)
 app.use('/api', mainRouter)

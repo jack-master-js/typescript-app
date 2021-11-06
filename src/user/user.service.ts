@@ -60,7 +60,7 @@ class UserService {
 
     /**
      * @api {GET} /api/users/list 获取用户列表
-     * @apiGroup Users
+     * @apiGroup User
      * @apiQuery {Number} pageIndex 分页序号
      * @apiQuery {Number} pageSize 分页数量
      * @apiQuery {String} [name] 姓名
@@ -79,7 +79,7 @@ class UserService {
     
     /**
      * @api {DELETE} /api/users/list 批量删除用户
-     * @apiGroup Users
+     * @apiGroup User
      * @apiBody {Array} ids 用户ID
      */
     async deleteUserList(req: any, res: any, next: any) {
