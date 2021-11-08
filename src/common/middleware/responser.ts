@@ -6,7 +6,7 @@ export default (req: any, res: any, next: any) => {
       success: true,
     });
     logger.info(
-      `[http server] ${req.method} ${req.originalUrl} ${JSON.stringify(
+      `[http server] ${req.method} ${req.originalUrl} body: ${JSON.stringify(
         req.body
       )} success`
     );
@@ -20,9 +20,9 @@ export default (req: any, res: any, next: any) => {
     });
 
     logger.info(
-      `[http server]  ${req.method} ${req.originalUrl} ${JSON.stringify(
+      `[http server]  ${req.method} ${req.originalUrl} body: ${JSON.stringify(
         req.body
-      )} response data: ${JSON.stringify(content)}`
+      )} response: ${JSON.stringify(content)}`
     );
   };
 
@@ -34,7 +34,7 @@ export default (req: any, res: any, next: any) => {
     });
 
     logger.error(
-      `[http server]  ${req.method} ${req.originalUrl} ${JSON.stringify(
+      `[http server]  ${req.method} ${req.originalUrl} body: ${JSON.stringify(
         req.body
       )} error: ${message}`
     );
@@ -55,7 +55,7 @@ export default (req: any, res: any, next: any) => {
       logger.info(
         `[http server]  ${req.method} ${
           req.originalUrl
-        } response data: ${JSON.stringify(data)}`
+        } response: ${JSON.stringify(data)}`
       );
       return res.send({
         success: true,
@@ -76,7 +76,7 @@ export default (req: any, res: any, next: any) => {
       logger.info(
         `[http server]  ${req.method} ${
           req.originalUrl
-        } response data: ${JSON.stringify(fileList)}`
+        } response: ${JSON.stringify(fileList)}`
       );
       return res.send({
         success: true,

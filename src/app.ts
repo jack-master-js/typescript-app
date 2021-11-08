@@ -4,16 +4,12 @@ import cors from "cors";
 import timeout from "connect-timeout";
 import compression from "compression";
 import responseTime from "response-time";
-import session from "express-session";
-import cookieParser from "cookie-parser";
-import bodyParser from "body-parser";
 import path from "path";
 import dotenv from "dotenv";
 import fs from "fs";
 import logger from "./common/utils/logger";
 import responser from "./common/middleware/responser";
 import { createConnection } from "typeorm";
-import MongoStore from "connect-mongo";
 
 // routes
 import mainRouter from "./main/main.router";
@@ -31,25 +27,17 @@ createConnection()
   .catch((error) => logger.error(`数据库连接失败！ error: ${error.message}`));
 
 const app = express();
-app.use(cors());
 app.set("port", process.env.PORT || 3000);
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "../", "public")));
-app.use(responser);
 
-// session && cookie
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "../", "public")));
 app.use(
-  session({
-    resave: true,
-    saveUninitialized: true,
-    secret: process.env.SESSION_SECRET,
-    store: new MongoStore({
-      mongoUrl: process.env.MONGODB_URI,
-    }),
+  cors({
+    origin: process.env.WHITE_LIST.split(","),
+    credentials: true,
   })
-); //req.session
-app.use(cookieParser()); //req.cookies || req.signedCookies
+);
 
 // performance
 app.use(compression());
@@ -57,6 +45,7 @@ app.use(responseTime());
 app.use(timeout("3s")); //req.timeout
 
 // router
+app.use(responser);
 app.use("/api", mainRouter);
 app.use("/api/users", userRouter);
 

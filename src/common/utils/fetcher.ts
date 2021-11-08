@@ -25,7 +25,7 @@ export default (url: string, data: any, method = "GET", headers = {}) => {
         const ret = await res.json();
         resolve(ret);
         logger.info(
-          `[ Request ] ${method} ${url} ${JSON.stringify(
+          `[ Request ] ${method} ${url} body: ${JSON.stringify(
             data
           )} receive: ${JSON.stringify(ret)}`
         );
@@ -33,7 +33,7 @@ export default (url: string, data: any, method = "GET", headers = {}) => {
       .catch((e: any) => {
         reject(e.message);
         logger.error(
-          `[ Request ] ${method} ${url} ${JSON.stringify(data)} error: ${
+          `[ Request ] ${method} ${url} body: ${JSON.stringify(data)} error: ${
             e.message
           }`
         );
