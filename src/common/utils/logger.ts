@@ -1,4 +1,4 @@
-import log4js from 'log4js'
+import log4js from 'log4js';
 
 log4js.configure({
     appenders: {
@@ -14,13 +14,13 @@ log4js.configure({
         default: { appenders: ['console', 'file'], level: 'trace' },
         prod: { appenders: ['console', 'file'], level: 'warn' },
     },
-})
+});
 
-let logger:any
+let logger: any;
 if (process.env.NODE_ENV === 'production') {
-    logger = log4js.getLogger('prod')
+    logger = log4js.getLogger('prod');
 } else {
-    logger = log4js.getLogger()
+    logger = log4js.getLogger();
 }
 
-export default logger
+export default logger;
