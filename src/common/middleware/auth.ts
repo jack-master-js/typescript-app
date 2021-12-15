@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { User } from '../entity/User';
 
-module.exports = async (req: any, res: any, next: any) => {
+export default async (req: any, res: any, next: any) => {
     // const token = req.headers.authorization
     const { token } = req.body;
     try {
