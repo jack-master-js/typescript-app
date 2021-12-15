@@ -8,7 +8,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import fs from 'fs';
 import logger from './common/utils/logger';
-import responser from './common/middleware/responser';
+import rsp from './common/middleware/rsp';
 import { createConnection } from 'typeorm';
 
 // routes
@@ -45,7 +45,7 @@ app.use(responseTime());
 app.use(timeout('3s')); //req.timeout
 
 // router
-app.use(responser);
+app.use(rsp);
 app.use('/api', mainRouter);
 app.use('/api/users', userRouter);
 
